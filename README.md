@@ -72,10 +72,74 @@ Read the input image in color mode.
 ##  Program
 
 ### Developed By:
-**Name:** ____________________________  
+**Name:** AADIPRANAV S
 
 ### Register No:
-____________________________  
+212224230001
+
+```
+import cv2
+import numpy as np
+import matplotlib.pyplot as plt
+image = cv2.imread('baseball.jpg') 
+plt.imshow(cv2.cvtColor(image, cv2.COLOR_BGR2RGB))  
+plt.title("Original Image")  
+plt.axis('off') 
+plt.imshow(image)
+plt.show()
+```
+```
+tx, ty = 100, 50 
+M_translation = np.float32([[1, 0, tx], [0, 1, ty]]) 
+translated_image = cv2.warpAffine(image, M_translation, (image.shape[1], image.shape[0]))  
+plt.imshow(cv2.cvtColor(translated_image, cv2.COLOR_BGR2RGB))  
+plt.title("Translated Image")  
+plt.axis('off')
+(np.float64(-0.5), np.float64(1279.5), np.float64(812.5), np.float64(-0.5))
+```
+```
+fx, fy = 5.0, 2.0
+scaled_image = cv2.resize(image, None, fx=fx, fy=fy, interpolation=cv2.INTER_LINEAR)
+plt.imshow(cv2.cvtColor(scaled_image, cv2.COLOR_BGR2RGB)) 
+plt.title("Scaled Image")
+plt.axis('off')
+(np.float64(-0.5), np.float64(6399.5), np.float64(1625.5), np.float64(-0.5))
+```
+```
+shear_matrix = np.float32([[1, 0.5, 0], [0.5, 1, 0]]) 
+sheared_image = cv2.warpAffine(image, shear_matrix, (image.shape[1], image.shape[0]))
+plt.imshow(cv2.cvtColor(sheared_image, cv2.COLOR_BGR2RGB)) 
+plt.title("Sheared Image")  
+plt.axis('off')
+(np.float64(-0.5), np.float64(1279.5), np.float64(812.5), np.float64(-0.5))
+```
+```
+reflected_image = cv2.flip(image, 2) 
+plt.imshow(cv2.cvtColor(reflected_image, cv2.COLOR_BGR2RGB))  
+plt.title("Reflected Image")  
+plt.axis('off')
+(np.float64(-0.5), np.float64(1279.5), np.float64(812.5), np.float64(-0.5))
+```
+```
+(height, width) = image.shape[:2] 
+angle = 45  
+center = (width // 2, height // 2)  
+M_rotation = cv2.getRotationMatrix2D(center, angle, 1)
+rotated_image = cv2.warpAffine(image, M_rotation, (width, height))  
+plt.imshow(cv2.cvtColor(rotated_image, cv2.COLOR_BGR2RGB))  
+plt.title("Rotated Image")  
+plt.axis('off')
+(np.float64(-0.5), np.float64(1279.5), np.float64(812.5), np.float64(-0.5))
+```
+```
+x, y, w, h = 110, 100, 100, 100  
+cropped_image = image[y:y+h, x:x+w]
+plt.imshow(cv2.cvtColor(cropped_image, cv2.COLOR_BGR2RGB))  
+plt.title("Cropped Image")  
+plt.axis('off')
+(np.float64(-0.5), np.float64(199.5), np.float64(149.5), np.float64(-0.5))
+```
+
 
 ---
 
@@ -85,26 +149,40 @@ ____________________________
 - Original image is displayed  
 - Translated image (shifted right and down) is displayed  
 
+<img width="633" height="414" alt="image" src="https://github.com/user-attachments/assets/2643d295-f4b7-4911-a04e-fcdd747eb1c6" />
+
 ### Image Scaling
 - Original image is displayed  
 - Downscaled image (0.5×) is displayed  
-- Upscaled image (2×) is displayed  
+- Upscaled image (2×) is displayed
+
+- <img width="658" height="204" alt="image" src="https://github.com/user-attachments/assets/bb293b29-6330-4fae-8fb7-6e2a4915394a" />
+ 
 
 ### Image Shearing
 - Original image is displayed  
 - Horizontally sheared image is displayed  
-- Vertically sheared image is displayed  
+- Vertically sheared image is displayed
+
+- <img width="649" height="417" alt="image" src="https://github.com/user-attachments/assets/9b400abf-3c84-4a6d-bb89-391fd9313d37" />
+
 
 ### Image Reflection
 - Original image is displayed  
 - Horizontally flipped image is displayed  
 - Vertically flipped image is displayed  
-- Both-axis flipped image is displayed  
+- Both-axis flipped image is displayed
+
+- <img width="633" height="430" alt="image" src="https://github.com/user-attachments/assets/299e0365-0207-4e5b-96ad-d1dd324015ef" />
+
 
 ### Image Rotation
 - Original image is displayed  
 - 45° rotated image is displayed  
-- 90° rotated image is displayed  
+- 90° rotated image is displayed
+
+- <img width="647" height="418" alt="image" src="https://github.com/user-attachments/assets/a9af2317-e151-4b27-b418-fe56a42a790f" />
+
 
 ---
 
